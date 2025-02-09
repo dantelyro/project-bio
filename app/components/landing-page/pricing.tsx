@@ -1,7 +1,7 @@
 import { TRIAL_DAYS } from "@/app/lib/config";
 import Button from "@/app/ui/button";
 
-export function Pricing () {
+export default function Pricing () {
   return (
     <div className="my-[150px] flex flex-col items-center gap-14">
       <div className="flex flex-col items-center gap-6">
