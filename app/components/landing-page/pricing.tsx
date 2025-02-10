@@ -33,7 +33,7 @@ export default function Pricing () {
                   <span className="text-content-body">Economize com</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="text-white font-bold text-[48px]">R$ 99.99</span>
+                  <span className="text-white font-bold text-[48px]">R$ 99.90</span>
                 </div>
                 <Button>Assinar</Button>
               </div>
