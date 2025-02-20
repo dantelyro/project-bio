@@ -5,9 +5,9 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 
 interface Props  {
-  params: {
+  params: Promise <{
     profileId: string;
-  };
+  }>;
 }
 
 export default async function ProfilePage({ params }: Props) {
