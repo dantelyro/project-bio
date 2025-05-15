@@ -3,8 +3,8 @@
 import { createLink } from "@/app/actions/create-link"
 import { verifyLink } from "@/app/actions/verify-link"
 import { sanitizeLink } from "@/app/lib/utils"
-import Button from "@/app/ui/button"
-import TextInput from "@/app/ui/text-input"
+import Button from "@/app/components/ui/button"
+import TextInput from "@/app/components/ui/text-input"
 import { useRouter } from "next/navigation"
 import { ChangeEvent, FormEvent, useState } from "react"
 

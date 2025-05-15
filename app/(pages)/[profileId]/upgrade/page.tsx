@@ -1,5 +1,6 @@
 import Header from "@/app/components/landing-page/header";
-import Button from "@/app/ui/button";
+import Button from "@/app/components/ui/button";
+
 
 export default function UpgradePage () {
   return (
