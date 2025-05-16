@@ -1,15 +1,15 @@
 import ProjectCard from "@/app/components/common/project-card";
 import TotalVisits from "@/app/components/common/total-visits";
-import UserCard from "@/app/components/common/user-card";
+import UserCard from "@/app/components/common/user-card/user-card";
 import { auth } from "@/app/lib/auth";
+import { getDownloadURLFromPath } from "@/app/lib/firebase";
 import {
   getProfileData,
   getProfileProjects,
 } from "@/app/server/get-profile-data";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import NewProject from "./new-project";
-import { getDownloadURLFromPath } from "@/app/lib/firebase";
 
 interface Props {
   params: Promise<{
