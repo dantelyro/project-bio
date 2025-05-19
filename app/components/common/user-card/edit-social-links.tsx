@@ -1,6 +1,7 @@
 "use client";
 
 import createSocialLinks from "@/app/actions/create-social-links";
+import { ProfileData } from "@/app/server/get-profile-data";
 import { Github, Instagram, Linkedin, Plus, Twitter } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { startTransition, useState } from "react";
@@ -8,16 +9,20 @@ import Button from "../../ui/button";
 import Modal from "../../ui/modal";
 import TextInput from "../../ui/text-input";
 
-export default function EditSocialLinks() {
+interface Props {
+  socialMedias?: ProfileData["socialMedias"];
+}
+
+export default function EditSocialLinks({ socialMedias }: Props) {
   const router = useRouter();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSavingSocialLinks, setIsSavingSocialLinks] = useState(false);
 
-  const [github, setGithub] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [linkedin, setLinkedin] = useState("");
-  const [twitter, setTwitter] = useState("");
+  const [github, setGithub] = useState(socialMedias?.github || "");
+  const [instagram, setInstagram] = useState(socialMedias?.instagram || "");
+  const [linkedin, setLinkedin] = useState(socialMedias?.linkedin || "");
+  const [twitter, setTwitter] = useState(socialMedias?.twitter || "");
 
   const { profileId } = useParams();
 
