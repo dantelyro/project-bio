@@ -1,6 +1,6 @@
+import imageCompression from "browser-image-compression";
 import { ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import imageCompression from "browser-image-compression";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -44,3 +44,8 @@ export const compressImage = (file: File): Promise<File> => {
       .catch((error) => reject(error));
   });
 };
+
+export function formatUrl(url: string) {
+  const formattedUrl = url.startsWith("http") ? url : `https://${url}`;
+  return formattedUrl;
+}
