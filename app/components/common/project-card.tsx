@@ -7,17 +7,25 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 interface Props {
-  project: ProjectData;
-  isOwner: boolean;
-  img: string | undefined;
+  project?: ProjectData;
+  isOwner?: boolean;
+  img?: string | undefined;
+  description?: string;
+  name?: string;
 }
 
-export default function ProjectCard({ img, isOwner, project }: Props) {
+export default function ProjectCard({
+  img,
+  isOwner,
+  project,
+  name,
+  description,
+}: Props) {
   const { profileId } = useParams<{ profileId: string }>();
-  const formattedUrl = formatUrl(project.projectUrl);
+  const formattedUrl = formatUrl(project?.projectUrl || "");
 
   async function handleClick() {
-    if (!profileId || !project.id || isOwner) return;
+    if (!profileId || !project?.id || isOwner) return;
     await increaseProjectVisits(profileId, project.id);
   }
 
@@ -30,13 +38,15 @@ export default function ProjectCard({ img, isOwner, project }: Props) {
         <div className="flex flex-col gap-2">
           {isOwner && (
             <span className="uppercase text-xs font-bold text-accent-green">
-              {project.totalVisits || 0} cliques
+              {project?.totalVisits || 0} cliques
             </span>
           )}
           <div className="flex flex-col">
-            <span className="text-white font-bold">{project.projectName}</span>
+            <span className="text-white font-bold">
+              {name || project?.projectName}
+            </span>
             <span className="text-content-body text-sm">
-              {project.projectDescription}
+              {description || project?.projectDescription}
             </span>
           </div>
         </div>
