@@ -1,9 +1,9 @@
 "use server";
 
+import { randomUUID } from "crypto";
 import { Timestamp } from "firebase-admin/firestore";
 import { auth } from "../lib/auth";
 import { db, storage } from "../lib/firebase";
-import { randomUUID } from "crypto";
 
 export async function createProject(formData: FormData) {
   const session = await auth();
@@ -26,11 +26,12 @@ export async function createProject(formData: FormData) {
 
   try {
     await db
-      .collection("projects")
+      .collection("profiles")
       .doc(profileId)
       .collection("projects")
-      .doc()
+      .doc(generatedId)
       .set({
+        id: generatedId,
         userId: session.user?.id,
         projectName,
         projectDescription,

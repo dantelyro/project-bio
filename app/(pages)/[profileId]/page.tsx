@@ -1,3 +1,4 @@
+import { increaseProfileVisits } from "@/app/actions/increase-profile-visits";
 import ProjectCard from "@/app/components/common/project-card";
 import TotalVisits from "@/app/components/common/total-visits";
 import UserCard from "@/app/components/common/user-card/user-card";
@@ -30,6 +31,10 @@ export default async function ProfilePage({ params }: Props) {
 
   const isOwner = profileData.userId === session?.user?.id;
 
+  if (!isOwner) {
+    await increaseProfileVisits(profileId);
+  }
+
   // TODO: add page view
 
   // if not in trial mode, direct to upgrade
@@ -58,9 +63,11 @@ export default async function ProfilePage({ params }: Props) {
         ))}
         {isOwner && <NewProject profileId={profileId} />}
       </div>
-      <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
-        <TotalVisits />
-      </div>
+      {isOwner && (
+        <div className="absolute bottom-4 right-0 left-0 w-min mx-auto">
+          <TotalVisits totalVisits={profileData.totalVisits} />
+        </div>
+      )}
     </div>
   );
 }
